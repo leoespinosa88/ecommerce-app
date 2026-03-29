@@ -1,0 +1,36 @@
+.navbar{
+    padding: 8px 16px;
+}
+
+.navbar-brand img{
+    width: 30px;
+}
+
+.search-form{
+    max-width: 500px;
+    width: 100%;
+}
+
+.search-form input{
+    max-width: 350px;
+}
+
+.carrito-btn img {
+    width: 20px;
+}
+
+.carrito-badge {
+    font-size: 10px;
+}
+
+/*Responsive*/
+
+@media(max-width: 768px){
+
+    .search-form{
+        max-width: 200px;
+    }
+    .search-form input{
+        max-width: 150px;
+    }
+}
