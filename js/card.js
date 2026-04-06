@@ -1,5 +1,6 @@
 import { getProducts } from './api.js';
 
+export let productosGlobal = [];
 
 function crearCard(producto){
 
@@ -10,7 +11,7 @@ function crearCard(producto){
         <div class="card-body d-flex flex-column text-center ">
           <h5 class="card-title text-truncate">${producto.title}</h5>
            <p class="card-text fw-bold mt-auto">$${producto.price}</p>
-          <button class="btn btn-producto w-100">Detalle del Producto</button>
+          <button class="btn btn-producto w-100" data-id="${producto.id}">Detalle del Producto</button>
         </div>
       </div>
     </div>
@@ -35,6 +36,8 @@ export async function renderizarCard() {
 `;
 
     const products = await getProducts();
+
+    productosGlobal = products;
 
     container.classList.remove('loading');
 
