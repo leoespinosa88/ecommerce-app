@@ -1,6 +1,19 @@
 import { renderizarCard, productosGlobal } from "./card.js";
+import { getProducts } from "./api.js";
 
-renderizarCard();
+getProducts().then(products => {
+  let inputSearch = document.querySelector("#inputSearch");
+  inputSearch.addEventListener("input", (event) => {
+    let query = event.target.value;
+    if (query!=="") {
+      let result = products.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()));
+      return renderizarCard(result);
+    }
+  });
+  renderizarCard(products);
+});
+
+// renderizarCard();
 
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("btn-producto")) {
