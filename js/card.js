@@ -20,12 +20,11 @@ function crearCard(producto){
     }
 
 
-export async function renderizarCard() {
+export async function renderizarCard(listaFiltrada = null) {
+  const container = document.querySelector('#product-card');
 
-   const container = document.querySelector('#product-card');
-
-   container.classList.add('loading');
-
+  if (listaFiltrada === null) {
+    container.classList.add('loading');
     container.innerHTML = `
       <div class="col-12 d-flex justify-content-center align-items-center loading-container">
         <div class="text-center">
@@ -33,21 +32,26 @@ export async function renderizarCard() {
           <p class="loading-text">Cargando productos...</p>
         </div>
       </div>
-`;
+    `;
 
     const products = await getProducts();
 
+    if (!products || products.length === 0) {
+      container.innerHTML =  `<p class="loading-text text-center">No se encontraron productos</p>`;
+      container.classList.remove('loading');
+      return;
+    }
+    
     productosGlobal = products;
-
+    listaFiltrada = products;
     container.classList.remove('loading');
-
-    if (products.length === 0){
-      
-      container.innerHTML =  `<p class="loading-text text-center">No se pueden cargar los productos</p>`;
+  }
+    if (listaFiltrada.length === 0){
+      container.innerHTML =  `<p class="loading-text text-center">No se encontraron productos de tu búsqueda</p>`;
       return;
     }
 
-    const template = products.map(crearCard).join('');
+    const template = listaFiltrada.map(crearCard).join('');
     container.innerHTML = template;
   
 }
