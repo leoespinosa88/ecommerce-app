@@ -1,25 +1,32 @@
-import { renderizarCard, productosGlobal } from "./card.js";
+import { renderizarCard} from "./card.js";
 import { getProducts } from "./api.js";
 
 getProducts().then(products => {
   let inputSearch = document.querySelector("#inputSearch");
   inputSearch.addEventListener("input", (event) => {
-    let query = event.target.value;
-    if (query!=="") {
-      let result = products.filter((p) => p.title.toLowerCase().includes(query.toLowerCase()));
-      return renderizarCard(result);
-    }
-  });
-  renderizarCard(products);
+  let query = event.target.value.trim();
+
+  if (query !== "") {
+
+    let result = products.filter((p) =>
+      p.title.toLowerCase().includes(query.toLowerCase())
+    );
+
+    renderizarCard(result);
+
+  } else {
+
+    renderizarCard(products);
+
+  }
 });
+  renderizarCard(products);
 
-// renderizarCard();
-
-document.addEventListener("click", (e) => {
+  document.addEventListener("click", (e) => {
   if (e.target.classList.contains("btn-producto")) {
     const id = e.target.dataset.id;
 
-    const producto = productosGlobal.find(p => p.id == id);
+    const producto = products.find(p => Number(p.id) === Number(id));
 
     const modalBody = document.getElementById("modal-body");
 
@@ -73,3 +80,6 @@ const modal = new bootstrap.Modal(document.getElementById('modalProducto'));
 modal.show();
   }
 });
+});
+
+
