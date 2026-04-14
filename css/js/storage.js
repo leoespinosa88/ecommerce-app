@@ -4,3 +4,8 @@ export function initLocalStorage() {
         localStorege.setItem(STORAGE_KEY, JSON.stringify([]));
     }
 }
+
+export function getFromLocalStorege() {
+    const data = localStorage.getItem(STOREAGE_KEY);
+    return data ? JSON.parse(data) : [];
+}
