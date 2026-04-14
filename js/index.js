@@ -1,6 +1,7 @@
 import { renderizarCard} from "./card.js";
 import { getProducts } from "./api.js";
 import { initLocalStorage, saveToLocalStorage } from "./storage.js";
+initLocalStorage();
 
 getProducts().then(products => {
   let inputSearch = document.querySelector("#inputSearch");
@@ -67,7 +68,10 @@ btnMenos.addEventListener("click", () => {
 
 const btnAgregar = document.getElementById("btn-agregar");
 
-btnAgregar.addEventListener("click", () => {
+btnAgregar.addEventListener("click", () => { 
+  
+  saveToLocalStorage(producto, cantidad);
+  
   const toastEl = document.getElementById("toastCarrito");
   const toast = new bootstrap.Toast(toastEl);
 
