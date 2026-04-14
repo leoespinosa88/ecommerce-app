@@ -1,5 +1,6 @@
 import { renderizarCard} from "./card.js";
 import { getProducts } from "./api.js";
+import { initLocalStorage, saveToLocalStorage } from "./storage.js";
 
 getProducts().then(products => {
   let inputSearch = document.querySelector("#inputSearch");
