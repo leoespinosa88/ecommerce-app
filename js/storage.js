@@ -31,3 +31,38 @@ export function saveToLocalStorage(producto, cantidad) {
 
   localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
 }
+
+export function renderizarCarrito(){
+
+  const carrito = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const contenedor = document.getElementById("lista-carrito");
+
+  contenedor.innerHTML = "";
+
+  if(carrito.length === 0){
+    contenedor.innerHTML = "<p>El carrito está vacío</p>";
+    return;
+  }
+
+  carrito.forEach(producto => {
+
+    contenedor.innerHTML += `
+      <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+          <strong>${producto.title}</strong>
+          <p>$${producto.price} x ${producto.cantidad}</p>
+        </div>
+
+        <button class="btn btn-sm btn-danger eliminar-producto"
+        data-id="${producto.id}">
+        X
+        </button>
+
+      </div>
+    `;
+
+  });
+
+}
