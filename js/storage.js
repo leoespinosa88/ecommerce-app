@@ -55,14 +55,32 @@ export function renderizarCarrito(){
           <p>$${producto.price} x ${producto.cantidad}</p>
         </div>
 
-        <button class="btn btn-sm btn-danger eliminar-producto"
+       <button class="btn btn-sm btn-danger eliminar-producto"
         data-id="${producto.id}">
-        X
-        </button>
+        Eliminar
+      </button>
 
       </div>
     `;
 
   });
 
+  }
+  export function actualizarBadge() {
+
+  const carrito = JSON.parse(localStorage.getItem("cart")) || [];
+
+  const badge = document.querySelector(".badge");
+
+  let total = 0;
+
+  carrito.forEach(producto => {
+    total += producto.cantidad;
+  });
+
+  badge.textContent = total;
+
 }
+
+
+

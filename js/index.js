@@ -1,7 +1,10 @@
 import { renderizarCard} from "./card.js";
 import { getProducts } from "./api.js";
-import { initLocalStorage, saveToLocalStorage } from "./storage.js";
+import { initLocalStorage, saveToLocalStorage, renderizarCarrito, actualizarBadge } from "./storage.js";
+
 initLocalStorage();
+renderizarCarrito();
+actualizarBadge();
 
 getProducts().then(products => {
   let inputSearch = document.querySelector("#inputSearch");
@@ -70,7 +73,9 @@ const btnAgregar = document.getElementById("btn-agregar");
 
 btnAgregar.addEventListener("click", () => { 
   
-  saveToLocalStorage(producto, cantidad);
+saveToLocalStorage(producto, cantidad);
+renderizarCarrito();
+actualizarBadge();
   
   const toastEl = document.getElementById("toastCarrito");
   const toast = new bootstrap.Toast(toastEl);
@@ -84,7 +89,41 @@ btnAgregar.addEventListener("click", () => {
 const modal = new bootstrap.Modal(document.getElementById('modalProducto'));
 modal.show();
   }
+if (e.target.classList.contains("eliminar-producto")) {
+
+  const id = Number(e.target.dataset.id);
+
+  let carrito = JSON.parse(localStorage.getItem("cart")) || [];
+
+  carrito = carrito.filter(p => p.id !== id);
+
+  localStorage.setItem("cart", JSON.stringify(carrito));
+
+  renderizarCarrito();
+  actualizarBadge();
+
+}
+
 });
 });
+
+const btnVaciar = document.getElementById("vaciar-carrito");
+
+if (btnVaciar) {
+  btnVaciar.addEventListener("click", () => {
+
+    localStorage.setItem("cart", JSON.stringify([]));
+
+    renderizarCarrito();
+    actualizarBadge();
+
+  });
+}
+
+
+
+
+
+
 
 
