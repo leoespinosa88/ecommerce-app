@@ -7,6 +7,7 @@ renderizarCarrito();
 actualizarBadge();
 
 getProducts().then(products => {
+  console.log("PRODUCTOS:", products);
   let inputSearch = document.querySelector("#inputSearch");
   inputSearch.addEventListener("input", (event) => {
   let query = event.target.value.trim();
@@ -106,11 +107,14 @@ if (e.target.classList.contains("eliminar-producto")) {
 
 });
 });
-
 const btnVaciar = document.getElementById("vaciar-carrito");
 
 if (btnVaciar) {
   btnVaciar.addEventListener("click", () => {
+
+    const confirmar = confirm("¿Deseas finalizar la compra?");
+
+    if (!confirmar) return;
 
     localStorage.setItem("cart", JSON.stringify([]));
 
