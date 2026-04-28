@@ -15,20 +15,19 @@ Tienda online desarrollada como proyecto grupal para la materia de Laboratorio A
 ### Estructura del proyecro
 
 ```
-shop-world/
-├── index.html
-├── css/
-│   └── styles.css
-├── js/
-│   ├── index.js
-│   ├── api.js
-│   ├── card.js
-│   └── storage.js
-└── img/
-    ├── globo.svg
-    └── carrito-de-compras.png
+    shop-world/
+    ├── index.html
+    ├── css/
+    │   └── styles.css
+    ├── js/
+    │   ├── index.js
+    │   ├── api.js
+    │   ├── card.js
+    │   └── storage.js
+    └── img/
+        ├── globo.svg
+        └── carrito-de-compras.png
 ```
-
 ### Arquitectura de moduos JS
 
  | Archivo | Responsabilidad |
