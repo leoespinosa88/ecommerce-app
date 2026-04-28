@@ -14,27 +14,29 @@ Tienda online desarrollada como proyecto grupal para la materia de Laboratorio A
 
 ### Estructura del proyecro
 
-    shop-world/
-    ├── index.html
-    ├── css/
-    │   └── styles.css
-    ├── js/
-    │   ├── index.js
-    │   ├── api.js
-    │   ├── card.js
-    │   └── storage.js
-    └── img/
-        ├── globo.svg
-        └── carrito-de-compras.png
+```
+shop-world/
+├── index.html
+├── css/
+│   └── styles.css
+├── js/
+│   ├── index.js
+│   ├── api.js
+│   ├── card.js
+│   └── storage.js
+└── img/
+    ├── globo.svg
+    └── carrito-de-compras.png
+```
 
 ### Arquitectura de moduos JS
 
-    |  Archivo  |  Responsabilidad  |
-    |---|---|
-    | `index.js`  |  Punto de entrada: inicializacion, busqueda, modal, eventos globales,dark mode  |
-    |  `api.js`  | Comunicacion con la API Dummy JSON mediante `fetch`  |
-    |  `card.js`  |  Renderizado dinamico de cards de productos en el DOM  |
-    |  `storage.js`   |  Logica del carrito: LocalStorage, badge, render del offcanvas | 
+ | Archivo | Responsabilidad |
+ |---|---|
+| `index.js` | Punto de entrada: inicializacion, busqueda, modal, eventos globales,dark mode |
+ | `api.js` | Comunicacion con la API Dummy JSON mediante `fetch` |
+ | `card.js` | Renderizado dinamico de cards de productos en el DOM |
+ | `storage.js` | Logica del carrito: LocalStorage, badge, render del offcanvas| 
 
 
 
