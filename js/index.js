@@ -112,17 +112,23 @@ const btnVaciar = document.getElementById("vaciar-carrito");
 if (btnVaciar) {
   btnVaciar.addEventListener("click", () => {
 
-    const confirmar = confirm("¿Deseas finalizar la compra?");
-
-    if (!confirmar) return;
-
-    localStorage.setItem("cart", JSON.stringify([]));
-
-    renderizarCarrito();
-    actualizarBadge();
+    const modal = new bootstrap.Modal(document.getElementById("modalConfirmacion"));
+    modal.show();
 
   });
 }
+
+document.getElementById("confirmarCompra").addEventListener("click", () => {
+
+  localStorage.setItem("cart", JSON.stringify([]));
+
+  renderizarCarrito();
+  actualizarBadge();
+
+  const modal = bootstrap.Modal.getInstance(document.getElementById("modalConfirmacion"));
+  modal.hide();
+
+});
 
 const btnDarkMode = document.getElementById("btnDarkMode");
 
